@@ -13,11 +13,27 @@ res.sendFile(__dirname + "/index.html");
 });
 
 app.post("/", (req, res) => {
+    const inputs = req.body.base;
+    var query1; var query2; var query3;
 
-    console.log(req.body.base);
+    if(inputs.length > 4){
+        query2 = _.upperCase(inputs.slice(4,8));
+        query1 = _.upperCase(inputs.slice(0,3));
 
-    const query = _.upperCase(req.body.base);
-    const url = "https://api.exchangeratesapi.io/latest?base=" + query;
+    } 
+    if (inputs.length > 10 ){
+        query3 = _.upperCase(inputs.slice(10,14));
+    } 
+    if(inputs.length === 3){
+        query1 = _.upperCase(inputs);
+    }
+    console.log(inputs.length);
+    console.log(query1, query2, query3);
+    
+
+    const url = "https://api.exchangeratesapi.io/latest?base=" + query1;
+    const url1 = "https://api.exchangeratesapi.io/latest?base=" + query2;
+    const url2 = "https://api.exchangeratesapi.io/latest?base=" + query3;
 
     https.get(url, (response) => {
         console.log(response.statusCode);
@@ -35,6 +51,40 @@ app.post("/", (req, res) => {
         }).on("error", (e)=>{
             console.log(e);
         });
+
+        https.get(url1, (response) => {
+            console.log(response.statusCode);
+            const parts1 = [];   
+            response.on("data", (part) => {
+                parts1.push(part);
+                });
+    
+                response.on("end", ()=>{
+                    const data1 = Buffer.concat(parts1);
+                    var result1 = JSON.parse(data1);
+    
+                    res.send(result1);
+                })
+            }).on("error", (e)=>{
+                console.log(e);
+            });
+        
+            https.get(url2, (response) => {
+                console.log(response.statusCode);
+                const parts2 = [];   
+                response.on("data", (part) => {
+                    parts2.push(part);
+                    });
+        
+                    response.on("end", ()=>{
+                        const data2 = Buffer.concat(parts2);
+                        var result2 = JSON.parse(data2);
+        
+                        res.send(result2);
+                    })
+                }).on("error", (e)=>{
+                    console.log(e);
+                });
 })
 
 

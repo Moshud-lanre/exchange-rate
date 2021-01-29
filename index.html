@@ -8,17 +8,22 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <style>
         body {
-            margin: 20px;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+        .heading {
+            margin-bottom: 30px;
         }
     </style>
 </head>
 <body>
+    <h2 class="heading">Exchange Rate Converter </h2>
     <form action="/" method="POST" class="row g-3" >
+
         <div class="col-auto">
-            <label for="currencyBase" class="form-label">Base Code</label>
-        </div>
-        <div class="col-auto">
-            <input type="text" name="base" id="cBase" class="form-control">
+            <input type="text" name="base" id="cBase"placeholder="Input the base code" class="form-control">
         </div>
         <div class="col-auto">
             <button type="submit" class="btn btn-outline-primary">Go</button>
