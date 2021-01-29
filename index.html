@@ -20,18 +20,18 @@
         .form{
             width: 450px ;
         }
+        .base{
+            margin-bottom: 30px;
+        }
     </style>
 </head>
 <body>
     <h2 class="heading">Exchange Rate Converter </h2>
     <form action="/" method="POST" class="row g-3 form" >
-
-        <div class="col-auto">
-            <input type="text" name="base" id="cBase"placeholder="Input the base code" class="form-control">
-        </div>
-        <div class="col-auto">
-            <button type="submit" class="btn btn-outline-primary">Submit</button>
-        </div>
+        <input type="text" name="base" id="cBase"placeholder="Input the base code" class="form-control base">
+        <input type="text" name="currency" id="cBase"placeholder="Input the currency codes" class="form-control">
+       <button type="submit" class="btn btn-outline-primary">Submit</button>
+        
         
         
     </form>
